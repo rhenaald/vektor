@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalululus</title>
+  <link rel="icon" href="asset/logo-black.png" type="image/x-icon">
+  <link rel="stylesheet" href="kalkulator.css">
+</head>
+<body>
+  <nav>
+    <div class="layar-dalam">
+        <div class="logo">
+            <a href="index.html"><img src="asset/kalululus navbar.png" class="hitam" alt="" /></a>
+        </div>
+        <div class="menu">
+            <a href="#" class="tombol-menu">
+                <span class="garis"></span>
+                <span class="garis"></span>
+                <span class="garis"></span>
+            </a>
+            <ul>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="materi.html">Materi</a></li>
+                <li><a href="kalkulator.html">Kalkulator</a></li>
+                <li><a href="index.html">Tim</a></li>
+            </ul>
+        </div>
+    </div>
+  </nav>
+  <div class="container">
+    <h1>Vector Operations</h1>
+    <div>
+      <label for="vector1">Vector 1:</label>
+      <input type="text" id="vector1" placeholder="Enter value, ex : 1,2,3" onkeypress="handleKeyPress(event)">
+    </div>
+    <div id="vector2Container">
+      <label for="vector2">Vector 2:</label>
+      <input type="text" id="vector2" placeholder="Enter value, ex : 1,2,3" onkeypress="handleKeyPress(event)">
+    </div>
+    <div id="scalarContainer" style="display: none;">
+      <label for="scalar">Scalar:</label>
+      <input type="number" id="scalar" placeholder="Enter value, ex : 1 " onkeypress="handleKeyPress(event)">
+    </div>
+    <div>
+      <label for="operation">Operation:   </label>
+      <select id="operation" onchange="toggleScalarInput()">
+        <option value="add">tambah (+) </option>
+        <option value="subtract">kurang (-) </option>
+        <option value="multiplyScalar">perkalian skalar</option>
+        <option value="multiply">perkalian (dot product)</option>
+        <option value="crossProduct">perkalian (Cross Product)</option>
+        <option value="angle">sudut antara dua vektor</option>
+      </select>
+    </div>
+    <button onclick="calculate()">Calculate</button>
+    <div id="result"></div>
+    <button onclick="showHistory()">History</button>
+    <button onclick="clearInput()">Clear</button>
+    <button onclick="clearHistory()">Clear History</button>
+    <ul id="historyList"></ul>
+  </div>
+  <script src="kalkulator.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="noscrolleffect.js"></script>
+</body>
+</html>

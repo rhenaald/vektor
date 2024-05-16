@@ -306,7 +306,7 @@ footer .layar-dalam .copyright {
   border-top: 1px solid #666;
   text-align: center;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 991.98px) {
   .layar-dalam {
     width: 90%;
   }

@@ -281,12 +281,6 @@ function addToHistory(operation, vector1, vector2, scalar = null) {
 }
 
 
-    const historyItem = `Vector1(${vector1}), Vector2(${vector2}), Result: ${result}`;
-    const listItem = document.createElement('li');
-    listItem.textContent = historyItem;
-    historyList.appendChild(listItem);
-}
-
 // Fungsi untuk menampilkan history
 function showHistory() {
     const historyList = document.getElementById('historyList');

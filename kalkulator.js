@@ -244,7 +244,6 @@ function showHistory() {
     }
 }
 
-// Fungsi untuk menambahkan history pemakaian
 function addToHistory(operation, vector1, vector2, scalar = null) {
     const historyList = document.getElementById('historyList');
     let result = '';
@@ -266,11 +265,21 @@ function addToHistory(operation, vector1, vector2, scalar = null) {
             result = crossProduct(vector1, vector2);
             break;
         case 'angle':
-                result = angleBetweenVectors(vector1, vector2);
-                break;
+            result = angleBetweenVectors(vector1, vector2);
+            break;
         default:
             result = 'Invalid operation';
     }
+
+    const historyItem = operation === 'multiplyScalar' ? 
+        `Vector1(${vector1}), Scalar(${scalar}), Result: ${result}` :
+        `Vector1(${vector1}), Vector2(${vector2}), Result: ${result}`;
+    
+    const listItem = document.createElement('li');
+    listItem.textContent = historyItem;
+    historyList.appendChild(listItem);
+}
+
 
     const historyItem = `Vector1(${vector1}), Vector2(${vector2}), Result: ${result}`;
     const listItem = document.createElement('li');
@@ -319,8 +328,15 @@ function calculate() {
     const scalarContainer = document.getElementById('scalarContainer');
     const operation = document.getElementById('operation').value;
 
-    if (vector1.trim() === '' || vector2.trim() === '') {
-        document.getElementById('result').innerHTML = 'Error: Vektor 1 dan Vektor 2 harus diisi';
+    // Periksa jika vektor 1 tidak diisi
+    if (vector1.trim() === '') {
+        document.getElementById('result').innerHTML = 'Error: Vektor 1 harus diisi';
+        return; // Menghentikan eksekusi lebih lanjut jika terdapat kesalahan
+    }
+
+    // Periksa jika vektor 2 tidak diisi dan operasi membutuhkan vektor 2
+    if ((operation !== 'multiplyScalar') && vector2.trim() === '') {
+        document.getElementById('result').innerHTML = 'Error: Vektor 2 harus diisi';
         return; // Menghentikan eksekusi lebih lanjut jika terdapat kesalahan
     }
 
@@ -337,7 +353,6 @@ function calculate() {
                 result = subtractVectors(vector1, vector2);
                 break;
             case 'multiplyScalar':
-                scalarContainer.style.display = 'block';
                 result = multiplyVectorByScalar(vector1, scalar);
                 break;
             case 'crossProduct':
